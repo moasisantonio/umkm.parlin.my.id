@@ -1,0 +1,251 @@
+<!-- File: /public_html/payment.html -->
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran - NeuraUMKM</title>
+    
+    <link rel="stylesheet" href="/css/modern.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Midtrans Snap.js -->
+    <script type="text/javascript" src="https://app.midtrans.com/snap/snap.js" 
+            data-client-key="Mid-client-eWX7hsNqsBAVxYCm"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-modern glass-effect">
+        <div class="container">
+            <div class="nav-brand">
+                <div class="logo-neura">
+                    <span class="logo-gradient">Neura</span>UMKM
+                </div>
+                <span class="nav-tag">PAYMENT</span>
+            </div>
+            
+            <div class="nav-actions">
+                <a href="/" class="btn-secondary-modern">
+                    <i class="fas fa-home"></i> Beranda
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Payment Main -->
+    <section class="payment-section">
+        <div class="container">
+            <div class="payment-wrapper">
+                <!-- Order Summary -->
+                <div class="order-summary glass-effect" id="orderSummary">
+                    <div class="summary-header">
+                        <h2><i class="fas fa-shopping-cart"></i> Ringkasan Pesanan</h2>
+                        <div class="order-status">
+                            <span class="status-badge pending" id="statusBadge">Menunggu</span>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-content">
+                        <div class="plan-info">
+                            <h3 id="planName">Paket Pro</h3>
+                            <div class="plan-features" id="planFeatures">
+                                <!-- Features loaded via JS -->
+                            </div>
+                        </div>
+                        
+                        <div class="price-details">
+                            <div class="price-row">
+                                <span>Biaya Layanan/Bulan</span>
+                                <span id="monthlyPrice">Rp 800.000</span>
+                            </div>
+                            <div class="price-row">
+                                <span>Biaya Setup (Sekali)</span>
+                                <span id="setupPrice">Rp 500.000</span>
+                            </div>
+                            <div class="price-row total">
+                                <span><strong>Total Pembayaran</strong></span>
+                                <span id="totalPrice"><strong>Rp 1.300.000</strong></span>
+                            </div>
+                        </div>
+                        
+                        <div class="order-info">
+                            <div class="info-row">
+                                <i class="fas fa-id-card"></i>
+                                <div>
+                                    <small>Order ID</small>
+                                    <div id="orderId">NEURA-1691234567-123</div>
+                                </div>
+                            </div>
+                            <div class="info-row">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <small>Berlaku Sampai</small>
+                                    <div id="expiryTime">24 jam</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Payment Methods -->
+                <div class="payment-methods glass-effect">
+                    <div class="methods-header">
+                        <h2><i class="fas fa-credit-card"></i> Metode Pembayaran</h2>
+                        <p>Pilih metode pembayaran yang nyaman</p>
+                    </div>
+                    
+                    <div class="methods-grid">
+                        <!-- Credit Card -->
+                        <div class="method-card" data-method="credit_card">
+                            <div class="method-icon">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                            <div class="method-info">
+                                <h4>Kartu Kredit</h4>
+                                <p>Visa, Mastercard, JCB</p>
+                            </div>
+                            <div class="method-select">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Bank Transfer -->
+                        <div class="method-card" data-method="bank_transfer">
+                            <div class="method-icon">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div class="method-info">
+                                <h4>Transfer Bank</h4>
+                                <p>BCA, BRI, Mandiri, BNI, dll</p>
+                            </div>
+                            <div class="method-select">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- E-Wallet -->
+                        <div class="method-card" data-method="gopay">
+                            <div class="method-icon">
+                                <i class="fas fa-wallet"></i>
+                            </div>
+                            <div class="method-info">
+                                <h4>E-Wallet</h4>
+                                <p>GoPay, OVO, Dana, LinkAja</p>
+                            </div>
+                            <div class="method-select">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- QRIS -->
+                        <div class="method-card" data-method="qris">
+                            <div class="method-icon">
+                                <i class="fas fa-qrcode"></i>
+                            </div>
+                            <div class="method-info">
+                                <h4>QRIS</h4>
+                                <p>Scan QR Code</p>
+                            </div>
+                            <div class="method-select">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Alfamart/Indomaret -->
+                        <div class="method-card" data-method="cstore">
+                            <div class="method-icon">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <div class="method-info">
+                                <h4>Alfamart/Indomaret</h4>
+                                <p>Bayar di gerai terdekat</p>
+                            </div>
+                            <div class="method-select">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Payment Button -->
+                    <div class="payment-action">
+                        <button id="payButton" class="btn-primary-modern btn-large" disabled>
+                            <i class="fas fa-lock"></i> LANJUTKAN KE PEMBAYARAN
+                        </button>
+                        <p class="secure-notice">
+                            <i class="fas fa-shield-alt"></i> Transaksi aman diproses oleh Midtrans
+                        </p>
+                    </div>
+                    
+                    <!-- Manual Transfer Info (hidden by default) -->
+                    <div class="manual-transfer" id="manualTransfer" style="display: none;">
+                        <h4><i class="fas fa-info-circle"></i> Transfer Manual</h4>
+                        <div class="bank-details">
+                            <div class="bank-info">
+                                <div class="bank-logo">BCA</div>
+                                <div>
+                                    <strong>123-456-7890</strong>
+                                    <p>PT Neura UMKM Indonesia</p>
+                                </div>
+                            </div>
+                            <div class="bank-note">
+                                <p><i class="fas fa-exclamation-triangle"></i> Total transfer harus sesuai</p>
+                                <p><i class="fas fa-clock"></i> Konfirmasi otomatis dalam 1x24 jam</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Customer Info -->
+                <div class="customer-info glass-effect">
+                    <h3><i class="fas fa-user"></i> Data Pemesan</h3>
+                    <div class="customer-details">
+                        <div class="detail-row">
+                            <span>Nama</span>
+                            <span id="customerName">Loading...</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Email</span>
+                            <span id="customerEmail">Loading...</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>WhatsApp</span>
+                            <span id="customerPhone">Loading...</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Usaha</span>
+                            <span id="customerBusiness">Loading...</span>
+                        </div>
+                    </div>
+                    
+                    <div class="support-info">
+                        <h4><i class="fas fa-headset"></i> Butuh Bantuan?</h4>
+                        <p>Hubungi kami via WhatsApp:</p>
+                        <a href="https://wa.me/6281234567890" class="btn-whatsapp" target="_blank">
+                            <i class="fab fa-whatsapp"></i> 0812-3456-7890
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Modal -->
+    <div class="payment-modal" id="paymentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Proses Pembayaran</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="snapContainer"></div>
+                <div class="payment-loading" id="paymentLoading">
+                    <div class="loading-spinner"></div>
+                    <p>Menyiapkan halaman pembayaran...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/payment.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "Konsultan AI UMKM",
+  "short_name": "AIUMKM",
+  "description": "Konsultan AI khusus UMKM Indonesia",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#FF6B35",
+  "background_color": "#FFFFFF",
+  "icons": [
+    {
+      "src": "/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

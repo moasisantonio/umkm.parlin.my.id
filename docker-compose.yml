@@ -1,0 +1,50 @@
+# File: docker-compose.yml
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: u326423063_umkm
+      POSTGRES_USER: u326423063_umkm
+      POSTGRES_PASSWORD: ${M4ntonio1985@}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U neuraadmin"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./server
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://neuraadmin:${DB_PASSWORD}@postgres:5432/neuraumkm
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./ssl:/etc/nginx/ssl
+      - ./public_html:/usr/share/nginx/html
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
